@@ -9468,6 +9468,34 @@ h1, h2, h3, h4, h5 {
   margin-right: auto;
 }
 
+/* Variante "soma": IMPLEMENTAÇÃO + MENSAL com sinal de + entre cards */
+.proposta-grid--sum {
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: 18px;
+  max-width: 920px;
+}
+.proposta-grid__plus {
+  display: grid;
+  place-items: center;
+  font-family: var(--f-display);
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--c-yellow);
+  line-height: 1;
+  text-shadow: 0 4px 18px rgba(255, 184, 0, 0.35);
+  align-self: center;
+}
+@media (max-width: 720px) {
+  .proposta-grid--sum {
+    grid-template-columns: 1fr;
+  }
+  .proposta-grid__plus {
+    font-size: 48px;
+    padding: 4px 0;
+  }
+}
+
 .proposta-card {
   position: relative;
   padding: 36px 28px 32px;
