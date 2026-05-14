@@ -5933,6 +5933,18 @@ h1, h2, h3, h4, h5 {
   .cases-highlight__grid { grid-template-columns: 1fr; gap: 16px; }
 }
 
+/* ============================================================
+   PLANOS S10 — textos brancos e maiores (igual advoga)
+============================================================ */
+.plan-card__sub { color: #fff !important; font-size: 14.5px; }
+.plan-card__price span { color: #fff !important; }
+.plan-feat__title { color: #fff !important; font-size: 13.5px; }
+.plan-feat__desc {
+  color: #fff !important;
+  font-size: 14px !important;
+  line-height: 1.5;
+}
+
 .real-shot__tag {
   position: absolute;
   top: -14px;
