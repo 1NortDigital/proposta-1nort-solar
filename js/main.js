@@ -339,49 +339,95 @@
       update();
     });
 
-    /* ----- Lightbox: zoom em screenshots reais ----- */
+    /* ----- Lightbox: zoom em screenshots reais (com navegação de galeria) ----- */
     const lightbox = document.querySelector('[data-lightbox]');
     if (lightbox) {
       const lbImg = lightbox.querySelector('[data-lightbox-img]');
       const lbCaption = lightbox.querySelector('[data-lightbox-caption]');
       const lbClose = lightbox.querySelector('[data-lightbox-close]');
+      const lbPrev = lightbox.querySelector('[data-lightbox-prev]');
+      const lbNext = lightbox.querySelector('[data-lightbox-next]');
 
-      const open = (src, caption) => {
-        lbImg.src = src;
-        lbImg.alt = caption || '';
-        if (lbCaption) lbCaption.textContent = caption || '';
+      let gallery = [];
+      let galleryIdx = 0;
+
+      const render = () => {
+        const item = gallery[galleryIdx];
+        if (!item) return;
+        lbImg.src = item.src;
+        lbImg.alt = item.caption || '';
+        if (lbCaption) lbCaption.textContent = item.caption || '';
+        const showNav = gallery.length > 1;
+        if (lbPrev) lbPrev.hidden = !showNav;
+        if (lbNext) lbNext.hidden = !showNav;
+      };
+
+      const open = (items, startIdx) => {
+        gallery = Array.isArray(items) ? items : [items];
+        galleryIdx = Math.max(0, Math.min(gallery.length - 1, startIdx || 0));
+        render();
         lightbox.classList.add('is-visible');
         document.body.style.overflow = 'hidden';
-        if (lenis) lenis.stop();
+        if (typeof lenis !== 'undefined' && lenis) lenis.stop();
       };
 
       const close = () => {
         lightbox.classList.remove('is-visible');
         document.body.style.overflow = '';
-        if (lenis) lenis.start();
+        if (typeof lenis !== 'undefined' && lenis) lenis.start();
       };
 
-      // Cada .real-shot vira clicável
+      const next = () => {
+        if (gallery.length < 2) return;
+        galleryIdx = (galleryIdx + 1) % gallery.length;
+        render();
+      };
+      const prev = () => {
+        if (gallery.length < 2) return;
+        galleryIdx = (galleryIdx - 1 + gallery.length) % gallery.length;
+        render();
+      };
+
+      // Helper: monta a galeria a partir do parent do elemento clicado
+      const buildGalleryFrom = (clicked) => {
+        const groupRoot = clicked.closest('[data-track], .creatives-modal__grid, .funnel-step__creatives-real');
+        const items = [];
+        let startIdx = 0;
+        if (groupRoot) {
+          const slides = Array.from(groupRoot.querySelectorAll('[data-zoom]'));
+          slides.forEach((slide) => {
+            const img = slide.querySelector('img');
+            const cap = slide.querySelector('figcaption');
+            if (!img) return;
+            if (slide === clicked) startIdx = items.length;
+            items.push({ src: img.src, caption: cap ? cap.textContent.trim() : (img.alt || '') });
+          });
+        }
+        if (!items.length) {
+          const img = clicked.querySelector('img');
+          const cap = clicked.querySelector('figcaption');
+          if (img) items.push({ src: img.src, caption: cap ? cap.textContent.trim() : (img.alt || '') });
+        }
+        return { items, startIdx };
+      };
+
+      // Cada .real-shot vira clicável (galeria solo)
       document.querySelectorAll('.real-shot').forEach((shot) => {
         const img = shot.querySelector('img');
         const tag = shot.querySelector('.real-shot__tag');
         if (!img) return;
-
         shot.addEventListener('click', (e) => {
-          // Não abre se clicou no badge
           if (tag && tag.contains(e.target)) return;
           const caption = tag ? tag.textContent.trim() : (img.alt || '');
-          open(img.src, caption);
+          open([{ src: img.src, caption }], 0);
         });
       });
 
-      // Slides do carrossel do sistema (S8) — clique expande
+      // Slides com [data-zoom] — agrupados por carrossel (navegação ◄ ►)
       document.querySelectorAll('[data-zoom]').forEach((slide) => {
-        const img = slide.querySelector('img');
-        const cap = slide.querySelector('figcaption');
-        if (!img) return;
         slide.addEventListener('click', () => {
-          open(img.src, cap ? cap.textContent.trim() : (img.alt || ''));
+          const { items, startIdx } = buildGalleryFrom(slide);
+          if (items.length) open(items, startIdx);
         });
       });
 
@@ -390,7 +436,7 @@
         btn.addEventListener('click', () => {
           const src = btn.getAttribute('data-conversa-img');
           const caption = btn.getAttribute('data-conversa-caption') || '';
-          if (src) open(src, caption);
+          if (src) open([{ src, caption }], 0);
         });
       });
 
@@ -399,9 +445,14 @@
       });
 
       if (lbClose) lbClose.addEventListener('click', close);
+      if (lbPrev) lbPrev.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+      if (lbNext) lbNext.addEventListener('click', (e) => { e.stopPropagation(); next(); });
 
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('is-visible')) close();
+        if (!lightbox.classList.contains('is-visible')) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowRight') next();
+        else if (e.key === 'ArrowLeft') prev();
       });
     }
 

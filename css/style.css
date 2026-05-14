@@ -5460,24 +5460,22 @@ h1, h2, h3, h4, h5 {
 
 .ia-system__arrow {
   flex-shrink: 0;
-  width: 54px;
-  height: 54px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 184, 0, 0.4);
-  background: rgba(255, 184, 0, 0.12);
-  color: var(--c-yellow);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--c-text);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background .2s ease, border-color .2s ease, transform .15s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .ia-system__arrow:hover:not(:disabled) {
-  background: var(--c-yellow);
+  background: rgba(255, 184, 0, 0.12);
   border-color: var(--c-yellow);
-  color: #0a0a0a;
-  transform: scale(1.06);
+  color: var(--c-yellow);
 }
 .ia-system__arrow:disabled { opacity: 0.35; cursor: not-allowed; }
 
@@ -5823,6 +5821,35 @@ h1, h2, h3, h4, h5 {
 .lightbox__close:hover {
   transform: scale(1.1) rotate(90deg);
   background: rgba(255, 184, 0, 0.15);
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 184, 0, 0.4);
+  border-radius: 50%;
+  color: var(--c-text, #fff);
+  cursor: pointer;
+  z-index: 5;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.lightbox__nav:hover {
+  background: rgba(255, 184, 0, 0.18);
+  border-color: rgba(255, 184, 0, 0.7);
+  box-shadow: 0 8px 24px rgba(255, 184, 0, 0.3);
+  transform: translateY(-50%) scale(1.08);
+}
+.lightbox__nav[hidden] { display: none; }
+.lightbox__nav--prev { left: 24px; }
+.lightbox__nav--next { right: 24px; }
+@media (max-width: 640px) {
+  .lightbox__nav { width: 42px; height: 42px; }
+  .lightbox__nav--prev { left: 12px; }
+  .lightbox__nav--next { right: 12px; }
 }
 
 .real-shot__tag {
