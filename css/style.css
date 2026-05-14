@@ -5972,6 +5972,12 @@ h1, h2, h3, h4, h5 {
 
 /* Esconder a pílula "PLANO" nos 3 cards */
 .plan-card__pill { display: none !important; }
+
+/* Título da S4 (Resultados) em uma linha só no desktop */
+#resultados .section__title { white-space: nowrap; }
+@media (max-width: 900px) {
+  #resultados .section__title { white-space: normal; }
+}
 .plan-feat--inherit .plan-feat__title {
   display: inline-flex;
   align-items: center;
