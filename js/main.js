@@ -390,7 +390,7 @@
 
       // Helper: monta a galeria a partir do parent do elemento clicado
       const buildGalleryFrom = (clicked) => {
-        const groupRoot = clicked.closest('[data-track], .creatives-modal__grid, .funnel-step__creatives-real');
+        const groupRoot = clicked.closest('[data-track], .creatives-modal__grid, .funnel-step__creatives-real, [data-cases-highlight]');
         const items = [];
         let startIdx = 0;
         if (groupRoot) {
