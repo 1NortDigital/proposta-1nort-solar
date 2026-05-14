@@ -8750,6 +8750,159 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ============================================================
+   PROPOSTA DE TRABALHO · Cards de valores (Seções 14 e 15)
+============================================================ */
+.section--proposta {
+  position: relative;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+.section--proposta-alt {
+  background: #0d0d0d;
+  border-top: 1px solid rgba(255, 184, 0, 0.08);
+}
+
+.proposta-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.proposta-bg__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 760px;
+  height: 760px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 184, 0, 0.13), transparent 70%);
+  filter: blur(70px);
+}
+
+.proposta-title {
+  white-space: nowrap;
+}
+
+.proposta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 48px;
+  position: relative;
+  z-index: 1;
+}
+.proposta-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.proposta-card {
+  position: relative;
+  padding: 36px 28px 32px;
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.85), rgba(10, 10, 10, 0.92));
+  border: 1px solid var(--c-border);
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color var(--t), transform var(--t);
+}
+.proposta-card:hover {
+  border-color: rgba(255, 184, 0, 0.4);
+  transform: translateY(-4px);
+}
+
+.proposta-card--featured {
+  border-color: rgba(255, 184, 0, 0.55);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 184, 0, 0.12);
+  background: linear-gradient(180deg, rgba(40, 28, 6, 0.85), rgba(20, 14, 4, 0.92));
+}
+
+.proposta-card__badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  background: var(--c-yellow);
+  color: #0a0a0a;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.proposta-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.proposta-card__tag {
+  font-family: var(--f-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--c-yellow);
+  text-transform: uppercase;
+}
+
+.proposta-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: #fff;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.proposta-card__currency {
+  font-family: var(--f-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  opacity: 0.78;
+}
+
+.proposta-card__value {
+  font-family: var(--f-display);
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+}
+
+.proposta-card__period {
+  font-size: 18px;
+  color: #fff;
+  opacity: 0.7;
+}
+
+.proposta-card__pay {
+  font-size: 15px;
+  color: #fff;
+  margin: 0;
+  opacity: 0.88;
+  line-height: 1.4;
+}
+
+.proposta-card__total {
+  font-size: 13px;
+  color: var(--c-yellow);
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .proposta-grid,
+  .proposta-grid--2 { grid-template-columns: 1fr; gap: 18px; }
+  .proposta-title { white-space: normal; }
+}
+
+/* ============================================================
    GATE DE ACESSO · Overlay de senha
 ============================================================ */
 html.is-locked { overflow: hidden; }
