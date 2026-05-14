@@ -8748,15 +8748,6 @@ h1, h2, h3, h4, h5 {
   .metrics-invest__cur { font-size: 22px; }
 }
 
-/* Tab "Estrutura da 1Nort" — foto full-width em cima, texto embaixo */
-.diff-panel[data-panel="estrutura"] {
-  grid-template-columns: 1fr;
-  gap: 28px;
-}
-.diff-panel[data-panel="estrutura"] .diff-panel__photo {
-  aspect-ratio: 16 / 9;
-  max-height: none;
-}
 
 /* ============================================================
    PROPOSTA DE TRABALHO · Cards de valores (Seções 14 e 15)
