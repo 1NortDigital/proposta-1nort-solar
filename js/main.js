@@ -641,103 +641,67 @@
       update();
     })();
 
-    /* ----- Carrossel de vídeos depoimento + lightbox YouTube (S4) ----- */
-    document.querySelectorAll('[data-videos]').forEach((wrap) => {
-      const grid = wrap.querySelector('[data-videos-grid]');
-      const track = wrap.querySelector('[data-videos-track]');
-      const prev = wrap.querySelector('[data-prev]');
-      const next = wrap.querySelector('[data-next]');
-      const dotsWrap = wrap.parentElement.querySelector('[data-videos-dots]');
-      const cards = track.querySelectorAll('.video-card');
+    /* ----- Lazy load de <video data-src=""> via IntersectionObserver ----- */
+    (function () {
+      const lazyVideos = document.querySelectorAll('video[data-src]');
+      if (!lazyVideos.length) return;
+      const load = (vid) => {
+        if (vid.dataset.loaded) return;
+        vid.src = vid.getAttribute('data-src');
+        vid.dataset.loaded = '1';
+        vid.load();
+        const tryPlay = vid.play();
+        if (tryPlay && typeof tryPlay.catch === 'function') tryPlay.catch(() => {});
+      };
+      if (!('IntersectionObserver' in window)) {
+        lazyVideos.forEach(load);
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            load(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '200px 0px', threshold: 0.01 });
+      lazyVideos.forEach((v) => io.observe(v));
+    })();
+
+    /* ----- Handler global: video-modal (abre por data-cm-video, fecha por ESC/X/backdrop) ----- */
+    (function () {
       const modal = document.querySelector('[data-video-modal]');
       const player = modal?.querySelector('[data-video-player]');
-
-      // Quantos cards cabem por página (calculado via flex-basis efetivo)
-      const perPage = () => {
-        if (!cards.length) return 1;
-        const cardWidth = cards[0].getBoundingClientRect().width;
-        const trackWidth = grid.getBoundingClientRect().width;
-        return Math.max(1, Math.round(trackWidth / (cardWidth + 24)));
+      if (!modal || !player) return;
+      const openVid = (src) => {
+        player.innerHTML = `<video src="${src}" controls autoplay playsinline style="width:100%;height:100%;object-fit:contain;background:#000;"></video>`;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
       };
-
-      let pageIdx = 0;
-      const totalPages = () => Math.max(1, Math.ceil(cards.length / perPage()));
-
-      const goTo = (idx) => {
-        const total = totalPages();
-        pageIdx = Math.max(0, Math.min(total - 1, idx));
-        const offsetCards = pageIdx * perPage();
-        const cardWidth = cards[0].getBoundingClientRect().width;
-        const x = offsetCards * (cardWidth + 24);
-        track.style.transform = `translateX(-${x}px)`;
-        updateDots();
-        updateArrows();
-      };
-
-      const updateArrows = () => {
-        if (prev) prev.disabled = pageIdx === 0;
-        if (next) next.disabled = pageIdx >= totalPages() - 1;
-      };
-
-      prev?.addEventListener('click', () => goTo(pageIdx - 1));
-      next?.addEventListener('click', () => goTo(pageIdx + 1));
-
-      // Dots: 1 por página
-      let dots = [];
-      const buildDots = () => {
-        if (!dotsWrap) return;
-        dotsWrap.innerHTML = '';
-        const total = totalPages();
-        for (let i = 0; i < total; i++) {
-          const b = document.createElement('button');
-          b.className = 'videos-dots__dot';
-          if (i === pageIdx) b.classList.add('is-active');
-          b.setAttribute('aria-label', `Página ${i + 1}`);
-          b.addEventListener('click', () => goTo(i));
-          dotsWrap.appendChild(b);
-        }
-        dots = dotsWrap.querySelectorAll('.videos-dots__dot');
-      };
-      const updateDots = () => {
-        dots.forEach((d, i) => d.classList.toggle('is-active', i === pageIdx));
-      };
-      buildDots();
-      updateArrows();
-
-      // Recalcula em resize
-      let resizeT;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeT);
-        resizeT = setTimeout(() => {
-          buildDots();
-          goTo(0);
-        }, 150);
-      });
-
-      // Abrir lightbox YouTube
-      cards.forEach((card) => {
-        card.addEventListener('click', () => {
-          const id = card.getAttribute('data-yt');
-          if (!id || !modal || !player) return;
-          player.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-          modal.hidden = false;
-          document.body.style.overflow = 'hidden';
-        });
-      });
-
-      // Fechar lightbox
-      const closeModal = () => {
-        if (!modal) return;
+      const closeVid = () => {
         modal.hidden = true;
-        if (player) player.innerHTML = '';
+        player.innerHTML = '';
         document.body.style.overflow = '';
       };
-      modal?.querySelectorAll('[data-video-close]').forEach((el) => {
-        el.addEventListener('click', closeModal);
+      document.querySelectorAll('[data-cm-video]').forEach((el) => {
+        el.addEventListener('click', () => {
+          const src = el.getAttribute('data-cm-video');
+          if (src) openVid(src);
+        });
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const src = el.getAttribute('data-cm-video');
+            if (src) openVid(src);
+          }
+        });
+      });
+      modal.querySelectorAll('[data-video-close]').forEach((el) => {
+        el.addEventListener('click', closeVid);
       });
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
+        if (e.key === 'Escape' && !modal.hidden) closeVid();
       });
-    });
+    })();
   });
 })();
