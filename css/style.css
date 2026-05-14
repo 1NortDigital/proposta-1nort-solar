@@ -5947,6 +5947,7 @@ h1, h2, h3, h4, h5 {
 
 /* Linha "Tudo do plano X incluso" — destaque dourado */
 .plan-feat--inherit {
+  list-style: none !important;
   margin: 0 -4px 6px !important;
   padding: 10px 14px !important;
   background: linear-gradient(135deg, rgba(255, 184, 0, 0.18), rgba(255, 184, 0, 0.06)) !important;
@@ -5956,6 +5957,21 @@ h1, h2, h3, h4, h5 {
   align-items: center !important;
   gap: 0 !important;
 }
+.plan-feat--inherit::before,
+.plan-feat--inherit::marker { content: none !important; display: none !important; }
+
+/* "Mais Vendido" centralizado no topo do card PRO */
+.plan-card__badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* Esconder a pílula "PLANO" nos 3 cards */
+.plan-card__pill { display: none !important; }
 .plan-feat--inherit .plan-feat__title {
   display: inline-flex;
   align-items: center;
