@@ -9561,10 +9561,16 @@ h1, h2, h3, h4, h5 {
 }
 
 .proposta-card__total {
-  font-size: 13px;
+  font-size: 17px;
   color: var(--c-yellow);
   margin: 0;
-  font-weight: 600;
+  font-weight: 800;
+  padding: 8px 14px;
+  background: rgba(255, 184, 0, 0.1);
+  border: 1px solid rgba(255, 184, 0, 0.3);
+  border-radius: 8px;
+  display: inline-block;
+  align-self: flex-start;
 }
 
 .proposta-footer {
@@ -9637,105 +9643,6 @@ h1, h2, h3, h4, h5 {
 .section--proposta-light .proposta-footer {
   background: linear-gradient(180deg, #1a1a1a, #0f0f0f);
   border-color: rgba(255, 184, 0, 0.4);
-}
-
-/* Selo "BONUS" girado no canto superior direito */
-.proposta-card {
-  overflow: hidden;
-  border-top-right-radius: 18px;
-}
-.proposta-card__seal-wrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  height: 120px;
-  overflow: hidden;
-  z-index: 4;
-  pointer-events: none;
-}
-.proposta-card__seal {
-  position: absolute;
-  top: 26px;
-  right: -36px;
-  transform: rotate(40deg);
-  background: linear-gradient(135deg, #ffd25a, #ffb800);
-  color: #0a0a0a;
-  font-family: var(--f-display);
-  font-weight: 900;
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  padding: 6px 44px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45);
-  text-align: center;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-
-/* Faixa de bônus abaixo dos cards do Trimestral */
-.proposta-bonus-strip {
-  margin-top: 28px;
-  padding: 22px 28px;
-  background: linear-gradient(135deg, rgba(255, 184, 0, 0.1), rgba(255, 184, 0, 0.03));
-  border: 1px solid rgba(255, 184, 0, 0.35);
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  position: relative;
-  z-index: 1;
-}
-.proposta-bonus-strip__title {
-  font-family: var(--f-display);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--c-yellow);
-}
-.proposta-bonus-strip__items {
-  display: flex;
-  justify-content: center;
-  gap: 36px;
-  flex-wrap: wrap;
-  width: 100%;
-}
-.proposta-bonus-strip__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  font-size: 15px;
-  line-height: 1.3;
-}
-.proposta-bonus-strip__item strong {
-  color: var(--c-yellow);
-  font-weight: 800;
-  font-size: 16px;
-}
-.proposta-bonus-strip__item span {
-  color: rgba(255, 255, 255, 0.85);
-}
-.proposta-bonus-strip__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: rgba(255, 184, 0, 0.18);
-  border: 1px solid rgba(255, 184, 0, 0.55);
-  color: var(--c-yellow);
-  flex-shrink: 0;
-}
-
-@media (max-width: 720px) {
-  .proposta-bonus-strip__items {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
 }
 
 @media (max-width: 900px) {
