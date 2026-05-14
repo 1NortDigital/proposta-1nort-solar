@@ -385,6 +385,15 @@
         });
       });
 
+      // Botões que abrem 1 imagem direto no lightbox (ex: "Ver conversa real")
+      document.querySelectorAll('[data-conversa-img]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const src = btn.getAttribute('data-conversa-img');
+          const caption = btn.getAttribute('data-conversa-caption') || '';
+          if (src) open(src, caption);
+        });
+      });
+
       lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox || e.target === lbImg.parentElement) close();
       });
