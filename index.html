@@ -713,17 +713,19 @@
           <h3 class="funnel-step__title">Criativos</h3>
           <span class="funnel-step__sub">(imagens e vídeos)</span>
           <div class="funnel-step__mock funnel-step__creatives-real">
-            <figure class="fs-real fs-real--video" data-zoom>
-              <img src="assets/images/ad1.webp" alt="Criativo solar 1" loading="lazy" />
+            <figure class="fs-real fs-real--video" data-cm-video="assets/videos/video-real-1.mp4" tabindex="0" role="button" aria-label="Abrir vídeo criativo">
+              <video class="fs-real__vid" src="assets/videos/video-real-1.mp4" muted loop autoplay playsinline preload="metadata"></video>
+              <span class="fs-real__play" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </figure>
+            <figure class="fs-real" data-zoom>
+              <img src="assets/images/ad-real-1.webp" alt="Criativo real 1" loading="lazy" />
               <figcaption class="visually-hidden">Anúncio real · 1</figcaption>
             </figure>
             <figure class="fs-real" data-zoom>
-              <img src="assets/images/ad2.webp" alt="Criativo solar 2" loading="lazy" />
+              <img src="assets/images/ad-real-2.webp" alt="Criativo real 2" loading="lazy" />
               <figcaption class="visually-hidden">Anúncio real · 2</figcaption>
-            </figure>
-            <figure class="fs-real" data-zoom>
-              <img src="assets/images/ad3.webp" alt="Criativo solar 3" loading="lazy" />
-              <figcaption class="visually-hidden">Anúncio real · 3</figcaption>
             </figure>
           </div>
           <button class="fs-creative-cta" data-open-creatives type="button">
@@ -1172,30 +1174,30 @@
                 <header class="rev-slide__head">
                   <span class="rev-slide__num">02</span>
                   <div>
-                    <strong>Detalhe do lead</strong>
-                    <p>Todo histórico, dados de qualificação e contexto em um só lugar.</p>
+                    <strong>Pipeline em Kanban</strong>
+                    <p>Cada lead em uma etapa visual — você enxerga o funil inteiro de uma vez.</p>
                   </div>
                 </header>
-                <img src="assets/images/crm-2.webp" alt="CRM 1Nort · tela 2" loading="lazy" />
+                <img src="assets/images/crm-2.webp" alt="Pipeline Kanban com oportunidades por etapa" loading="lazy" />
                 <button class="ia-system__zoom" aria-label="Expandir imagem">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
-                <figcaption>Cada lead com contexto pronto pra atender.</figcaption>
+                <figcaption>Visão completa do funil, sem planilha.</figcaption>
               </figure>
 
               <figure class="ia-system__slide ia-system__slide--rev" data-zoom>
                 <header class="rev-slide__head">
                   <span class="rev-slide__num">03</span>
                   <div>
-                    <strong>Métricas e performance</strong>
-                    <p>KPIs do time comercial e taxas de conversão por etapa.</p>
+                    <strong>Conversas integradas</strong>
+                    <p>WhatsApp do time direto no CRM — cada lead com histórico completo.</p>
                   </div>
                 </header>
-                <img src="assets/images/crm-3.webp" alt="CRM 1Nort · tela 3" loading="lazy" />
+                <img src="assets/images/crm-3.webp" alt="Caixa de entrada com conversas do WhatsApp integradas ao CRM" loading="lazy" />
                 <button class="ia-system__zoom" aria-label="Expandir imagem">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
-                <figcaption>Decisões baseadas em dados — não em achismo.</figcaption>
+                <figcaption>WhatsApp e CRM rodando em uma única tela.</figcaption>
               </figure>
 
               <figure class="ia-system__slide ia-system__slide--rev" data-zoom>
@@ -1871,12 +1873,12 @@
         <button class="creatives-modal__tab is-active" data-tab="imgs" type="button">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Imagens
-          <span class="creatives-modal__count">5</span>
+          <span class="creatives-modal__count">3</span>
         </button>
         <button class="creatives-modal__tab" data-tab="vids" type="button">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><polygon points="5 3 19 12 5 21 5 3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
           Vídeos
-          <span class="creatives-modal__count">5</span>
+          <span class="creatives-modal__count">3</span>
         </button>
       </div>
 
@@ -1885,29 +1887,19 @@
         <div class="creatives-modal__panel is-active" data-panel="imgs">
           <div class="creatives-modal__grid">
             <figure class="cm-thumb" data-zoom>
-              <img src="assets/images/ad1.webp" alt="Criativo 1" loading="lazy" />
+              <img src="assets/images/ad-real-1.webp" alt="Viko Energia · Reduza Conta de Luz" loading="lazy" />
               <button class="cm-thumb__zoom" aria-label="Expandir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <figcaption>Anúncio · Tese Reclamante</figcaption>
+              <figcaption>Viko · Reduza Conta de Luz</figcaption>
             </figure>
             <figure class="cm-thumb" data-zoom>
-              <img src="assets/images/ad2.webp" alt="Criativo 2" loading="lazy" />
+              <img src="assets/images/ad-real-2.webp" alt="Viko Energia · Antes/Depois" loading="lazy" />
               <button class="cm-thumb__zoom" aria-label="Expandir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <figcaption>Anúncio · Estúdio</figcaption>
+              <figcaption>Viko · Antes/Depois da conta</figcaption>
             </figure>
             <figure class="cm-thumb" data-zoom>
-              <img src="assets/images/ad3.webp" alt="Criativo 3" loading="lazy" />
+              <img src="assets/images/ad-real-3.webp" alt="Sanisu · Belém R$ 299,00 mensais" loading="lazy" />
               <button class="cm-thumb__zoom" aria-label="Expandir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <figcaption>Anúncio · Conta de luz</figcaption>
-            </figure>
-            <figure class="cm-thumb" data-zoom>
-              <img src="assets/images/ad4.webp" alt="Criativo 4" loading="lazy" />
-              <button class="cm-thumb__zoom" aria-label="Expandir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <figcaption>Anúncio · Família</figcaption>
-            </figure>
-            <figure class="cm-thumb" data-zoom>
-              <img src="assets/images/ad5.webp" alt="Criativo 5" loading="lazy" />
-              <button class="cm-thumb__zoom" aria-label="Expandir"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <figcaption>Anúncio · Engenheiro</figcaption>
+              <figcaption>Sanisu · Notícia G1 Belém</figcaption>
             </figure>
           </div>
         </div>
@@ -1915,35 +1907,23 @@
         <!-- TAB VÍDEOS -->
         <div class="creatives-modal__panel" data-panel="vids">
           <div class="creatives-modal__grid creatives-modal__grid--videos">
-            <figure class="cm-thumb cm-thumb--video" data-cm-yt="V7sNO3Px6NJ">
-              <img src="assets/images/site-1nort/Cliente01.webp" alt="Vídeo criativo 1" loading="lazy" />
+            <figure class="cm-thumb cm-thumb--video" data-cm-video="assets/videos/video-real-1.mp4">
+              <video class="cm-thumb__vid" src="assets/videos/video-real-1.mp4" muted loop autoplay playsinline preload="metadata"></video>
               <span class="cm-thumb__overlay"></span>
               <span class="cm-thumb__play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-              <figcaption>Reels · Depoimento</figcaption>
+              <figcaption>Sunbright · Rio de Janeiro</figcaption>
             </figure>
-            <figure class="cm-thumb cm-thumb--video" data-cm-yt="9PD_5ZCt-bc">
-              <img src="assets/images/site-1nort/Cliente05.webp" alt="Vídeo criativo 2" loading="lazy" />
+            <figure class="cm-thumb cm-thumb--video" data-cm-video="assets/videos/video-real-2.mp4">
+              <video class="cm-thumb__vid" src="assets/videos/video-real-2.mp4" muted loop autoplay playsinline preload="metadata"></video>
               <span class="cm-thumb__overlay"></span>
               <span class="cm-thumb__play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-              <figcaption>Story · Educação</figcaption>
+              <figcaption>Anúncio criativo · 2</figcaption>
             </figure>
-            <figure class="cm-thumb cm-thumb--video" data-cm-yt="LLZuynuktqps">
-              <img src="assets/images/site-1nort/Cliente08.webp" alt="Vídeo criativo 3" loading="lazy" />
+            <figure class="cm-thumb cm-thumb--video" data-cm-video="assets/videos/video-real-3.mp4">
+              <video class="cm-thumb__vid" src="assets/videos/video-real-3.mp4" muted loop autoplay playsinline preload="metadata"></video>
               <span class="cm-thumb__overlay"></span>
               <span class="cm-thumb__play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-              <figcaption>Anúncio · Quebra de objeção</figcaption>
-            </figure>
-            <figure class="cm-thumb cm-thumb--video" data-cm-yt="atfqQ5Owm0s">
-              <img src="assets/images/site-1nort/Cliente12.webp" alt="Vídeo criativo 4" loading="lazy" />
-              <span class="cm-thumb__overlay"></span>
-              <span class="cm-thumb__play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-              <figcaption>Reels · Autoridade</figcaption>
-            </figure>
-            <figure class="cm-thumb cm-thumb--video" data-cm-yt="V7sNO3Px6NJ">
-              <img src="assets/images/site-1nort/Cliente15.webp" alt="Vídeo criativo 5" loading="lazy" />
-              <span class="cm-thumb__overlay"></span>
-              <span class="cm-thumb__play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-              <figcaption>Story · Prova social</figcaption>
+              <figcaption>Eficient · Economia validada</figcaption>
             </figure>
           </div>
         </div>
