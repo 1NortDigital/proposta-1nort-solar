@@ -6021,13 +6021,17 @@ h1, h2, h3, h4, h5 {
 .ig-embed__body {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 16px;
   padding: 4px 4px 0;
 }
 .ig-embed__head {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
+  text-align: left;
 }
 .ig-embed__avatar {
   display: grid;
@@ -6055,13 +6059,16 @@ h1, h2, h3, h4, h5 {
 }
 .ig-embed__stats {
   display: flex;
-  gap: 22px;
+  justify-content: center;
+  gap: 36px;
   padding: 14px 0;
   margin: 0;
   list-style: none;
   border-top: 1px solid rgba(255, 184, 0, 0.18);
   border-bottom: 1px solid rgba(255, 184, 0, 0.18);
+  width: 100%;
 }
+.ig-embed__stats li { align-items: center; text-align: center; }
 .ig-embed__stats li {
   display: flex;
   flex-direction: column;
