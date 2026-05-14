@@ -5093,7 +5093,10 @@ h1, h2, h3, h4, h5 {
 /* Mockup celular */
 .ia-phone {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 14px;
 }
 
 .phone-frame {
@@ -8614,6 +8617,32 @@ h1, h2, h3, h4, h5 {
 #ia-whatsapp .ia-step__body strong { color: #0a0a0a; }
 #ia-whatsapp .ia-step__body > span { color: #b8860b; opacity: 1; }
 #ia-whatsapp .ia-step__body p { color: #444; opacity: 1; }
+
+/* Botão "Ver conversa real" abaixo do mockup phone (regra base) */
+.ia-phone__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 11px 20px;
+  background: rgba(255, 184, 0, 0.1);
+  border: 1px solid rgba(255, 184, 0, 0.35);
+  border-radius: 999px;
+  color: var(--c-yellow, #FFB800);
+  font-family: var(--f-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.ia-phone__cta:hover {
+  background: rgba(255, 184, 0, 0.2);
+  border-color: rgba(255, 184, 0, 0.6);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(255, 184, 0, 0.25);
+}
+.ia-phone__cta svg { flex-shrink: 0; }
 
 #ia-whatsapp .ia-phone__cta {
   background: #fff;
