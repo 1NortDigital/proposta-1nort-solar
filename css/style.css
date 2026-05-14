@@ -8667,6 +8667,55 @@ h1, h2, h3, h4, h5 {
 .video-card.is-playing .video-card__overlay,
 .video-card.is-playing .video-card__play { opacity: 0; pointer-events: none; transition: opacity .25s ease; }
 
+/* Override de regras antigas: depoimentos S4 (grid de 4 cards) — play centralizado */
+.cases-grid .video-card {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0;
+  display: block;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.cases-grid .video-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 184, 0, 0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+.cases-grid .video-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.cases-grid .video-card__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255, 184, 0, 0.95);
+  color: #111;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 2;
+}
+.cases-grid .video-card__play svg { width: 26px; height: 26px; margin-left: 3px; }
+.cases-grid .video-card:hover .video-card__play {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 12px 32px rgba(255, 184, 0, 0.6);
+}
+
 /* ============================================================
    SEÇÃO T (Tracking) · Paleta CLARA — quebra do dark
 ============================================================ */
