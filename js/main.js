@@ -351,9 +351,15 @@
       let gallery = [];
       let galleryIdx = 0;
 
+      const resetZoom = () => {
+        lbImg.classList.remove('is-zoomed');
+        lbImg.style.transformOrigin = '';
+      };
+
       const render = () => {
         const item = gallery[galleryIdx];
         if (!item) return;
+        resetZoom();
         lbImg.src = item.src;
         lbImg.alt = item.caption || '';
         if (lbCaption) lbCaption.textContent = item.caption || '';
@@ -361,6 +367,20 @@
         if (lbPrev) lbPrev.hidden = !showNav;
         if (lbNext) lbNext.hidden = !showNav;
       };
+
+      // Click na imagem alterna zoom 2x no ponto clicado
+      lbImg.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (lbImg.classList.contains('is-zoomed')) {
+          resetZoom();
+          return;
+        }
+        const rect = lbImg.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        lbImg.style.transformOrigin = `${x}% ${y}%`;
+        lbImg.classList.add('is-zoomed');
+      });
 
       const open = (items, startIdx) => {
         gallery = Array.isArray(items) ? items : [items];
@@ -372,6 +392,7 @@
       };
 
       const close = () => {
+        resetZoom();
         lightbox.classList.remove('is-visible');
         document.body.style.overflow = '';
         if (typeof lenis !== 'undefined' && lenis) lenis.start();
